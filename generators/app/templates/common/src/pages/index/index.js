@@ -26,7 +26,7 @@ Page({
         })
     },
     onLoad: async function () {
-        var userInfo = await Util.getUserInfo();
+        var userInfo = await app.getUserInfo();
         console.log(userInfo);
         //更新数据
         this.setData({

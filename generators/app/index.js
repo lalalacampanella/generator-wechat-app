@@ -26,6 +26,8 @@ module.exports = yeoman.Base.extend({
         return this.prompt(prompts).then(function (props) {
             // To access props later use this.props.someAnswer;
             props.pages = props.pages.replace(/\s/g,'').split(',');
+            props.pages = unique('index', props.pages);
+            props.pages.splice(0,1);
             this.props = props;
             console.log(this.props);
         }.bind(this));
@@ -63,3 +65,11 @@ module.exports = yeoman.Base.extend({
         //this.installDependencies();
     }
 });
+
+function unique(start, array){
+    var n = [start];//临时数组
+    for(var i = 0;i < array.length; i++){
+        if(n.indexOf(array[i]) == -1 && array[i] != '') n.push(array[i]);
+    }
+    return n;
+}
