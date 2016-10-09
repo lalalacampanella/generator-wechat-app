@@ -1,0 +1,8 @@
+<view class="img">
+    <image class="avatar" src="{{ userInfo.avatarUrl }}"/>
+    <text class="info">{{ userInfo.nickName }}</text>
+    <text class="test"> test</text>
+    <view wx:for="{{ items }}" bindtap="bindChangeTap" data-item="{{ item.link }}">
+        turn to page {{ item.link }}
+    </view>
+</view>

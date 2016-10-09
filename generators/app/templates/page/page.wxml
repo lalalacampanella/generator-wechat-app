@@ -1,0 +1,3 @@
+<view class="container">
+    <text class="log-item">now page is {{ title }}</text>
+</view>

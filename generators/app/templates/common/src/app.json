@@ -1,0 +1,12 @@
+{
+  "pages":[
+    "pages/index/index",
+    <% pages.forEach(function(name, index) { %>"pages/<%= name %>/<%= name %>"<% if ( index != pages.length - 1 ) { %>,<% } %>
+  <% }) %>],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  }
+}
