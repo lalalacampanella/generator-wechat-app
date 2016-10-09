@@ -15,7 +15,14 @@ Then generate your new project:
 ```bash
 yo wechat-app
 ```
-#Start using the template
+Then complete the operation according to the guidelines
+
+```bash
+please input your project name #your project
+except index, please input the names of your pages(example:detail,list) #your pages names
+```
+
+## Start using the template
 
 感谢kodo,本项目基于其 https://github.com/MeCKodo/wxapp-cli 项目改写而来。
 
