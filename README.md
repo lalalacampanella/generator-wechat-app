@@ -15,6 +15,22 @@ Then generate your new project:
 ```bash
 yo wechat-app
 ```
+#Start using the template
+
+感谢kodo,本项目基于其 https://github.com/MeCKodo/wxapp-cli 项目改写而来。
+
+支持wxss，less，sass，支持es6+，需要注意的是，模块系统使用了babel而放弃了微信小程序原生require
+
+使用方法：
+```bash
+npm run dev 
+#启动开发模式（监听自动更新）
+
+npm run build
+#构建预发布项目（压缩）
+```
+
+构建完成后，在微信开发工具中将项目根目录定到/disk上，即可开始开发。
 
 ## Getting To Know Yeoman
 
