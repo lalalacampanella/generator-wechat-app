@@ -1,6 +1,6 @@
 {
   "name": "generator-wechat-app",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "a small wechat app cli for less(sass,css), es6",
   "homepage": "https://github.com/lalalacampanella/generator-wechat-app",
   "author": {
