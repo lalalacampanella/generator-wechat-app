@@ -29,7 +29,6 @@ module.exports = yeoman.Base.extend({
             props.pages = unique('index', props.pages);
             props.pages.splice(0,1);
             this.props = props;
-            console.log(this.props);
         }.bind(this));
     },
 
@@ -63,6 +62,22 @@ module.exports = yeoman.Base.extend({
 
     install: function () {
         //this.installDependencies();
+    },
+
+    end: function() {
+        this.log('');
+        this.log('');
+        this.log( chalk.cyan('you have successfully build your wechat small app ') + chalk.red(this.props.name) + chalk.cyan(' !') );
+        this.log( chalk.cyan('now you need to execute the following command to install dependencies:') );
+        this.log( chalk.cyan(''));
+        this.log( chalk.white('$ cd ' + this.props.name + ' && npm install'));
+        this.log( chalk.cyan(''));
+        this.log( chalk.cyan('then try to use it with:') );
+        this.log('');
+        this.log( chalk.white('$ npm run dev ') + chalk.gray('#Start development') );
+        this.log( chalk.white('$ npm run build ') + chalk.gray('#Build the project and pre-on-line') );
+        this.log('');
+        this.log( chalk.cyan(`after the completion of the building, in the WeChat applet development tools, choose `) + chalk.red(`${this.props.name}/dist`) + chalk.cyan(` as the project root directory, then you can begin to develop!`) );
     }
 });
 
