@@ -1,5 +1,5 @@
 <view class="img">
-    <image class="avatar" src="{{ userInfo.avatarUrl }}"/>
+    <image class="avatar" src="{{ userInfo.avatarUrl }}" ></image>
     <text class="info">{{ userInfo.nickName }}</text>
     <text class="test"> test</text>
     <button wx:for="{{ items }}" bindtap="bindChangeTap" data-item="{{ item.link }}">

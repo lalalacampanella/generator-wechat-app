@@ -16,11 +16,10 @@ module.exports = function(gulp, $, config) {
     }
     function compileWxml(src, dist) {
         gulp.src(src)
-            .pipe($.ifElse(/html/.test(src), function() {
-                return $.rename({
-                    extname: ".wxml"
-                });
+            .pipe($.ifElse(config.isBuild === true, function () {
+                return $.htmlmin(config.htmlMinOptions);
             }))
+            .pipe($.rename({ extname: ".wxml" }))
             .pipe(gulp.dest(dist));
     }
     function compileSass(src, dist) {
@@ -63,11 +62,7 @@ module.exports = function(gulp, $, config) {
             .pipe($.ifElse(config.isBuild === true, function () {
                 return $.postcss(config.processes);
             }))
-            .pipe($.ifElse(/css/.test(src), function() {
-                return $.rename({
-                    extname: ".wxss"
-                });
-            }))
+            .pipe($.rename({ extname: ".wxss" }))
             .pipe(gulp.dest(dist))
     }
 
