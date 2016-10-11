@@ -33,7 +33,8 @@ var webpackConfig = {
 };
 
 var src  = {
-    static: './src/**/*.{eot,svg,ttf,woff,png,jpg,jpeg,json}',
+    static: './src/**/*.{eot,svg,ttf,woff,png,jpg,jpeg}',
+    json: './src/**/*.json',
     js: './src/{pages/**/*.js,app.js}',
     watchJs: './src/**/*.js',
     sass: './src/**/*.{scss,sass}',

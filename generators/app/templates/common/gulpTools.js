@@ -14,6 +14,13 @@ module.exports = function(gulp, $, config) {
         gulp.src(src)
             .pipe(gulp.dest(dist));
     }
+    function compileJson(src, dist) {
+        gulp.src(src)
+            .pipe($.ifElse(config.isBuild === true, function () {
+                return $.jsonmin();
+            }))
+            .pipe(gulp.dest(dist));
+    }
     function compileWxml(src, dist) {
         gulp.src(src)
             .pipe($.ifElse(config.isBuild === true, function () {
@@ -82,7 +89,7 @@ module.exports = function(gulp, $, config) {
             .pipe(gulp.dest(config.dist))
     }
     function build() {
-        runSequence(['js:build','less:build', 'sass:build', 'wxss:build', 'wxml:build', 'static:build'], function () {
+        runSequence(['js:build','less:build', 'sass:build', 'wxss:build', 'wxml:build', 'static:build', 'json:build'], function () {
             setTimeout(function () {
                 console.log();
                 console.log(chalk.green('Build success!'));
@@ -91,6 +98,7 @@ module.exports = function(gulp, $, config) {
     }
     return {
         compileStatic: compileStatic,
+        compileJson: compileJson,
         compileSass: compileSass,
         compileLess: compileLess,
         compileWxss: compileWxss,
