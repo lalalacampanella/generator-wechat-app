@@ -7,7 +7,6 @@ App({
         var logs = wx.getStorageSync('logs') || []
         logs.unshift(Date.now())
         wx.setStorageSync('logs', logs)
-        console.log('wa');
     },
     getUserInfo: async function () {
         return await Util.getUserInfo();
