@@ -1,13 +1,9 @@
-module.exports = function(gulp, $, config, chalk, gulpTools) {
+module.exports = function(gulp, $, config, gulpTools) {
     gulp.task('static', function () {
-        $.watch([config.src.static]).on('change', function (event) {
-            var date = new Date();
-            console.log(chalk.green(`[${date.Format('hh:mm:ss')}] ${event} has changed, Build success!`));
-            gulpTools.static();
-        }).on('add', function (event) {
-            var date = new Date();
-            console.log(chalk.green(`[${date.Format('hh:mm:ss')}] ${event} has changed, Build success!`));
-            gulpTools.static();
+        $.watch([config.src.static], function (e) {
+            gulpTools.log(e);
+            var paths = $.watchPath(e, config.src.static, config.dist);
+            gulpTools.compileStatic(paths.srcPath, paths.srcDir.replace('src', 'dist')); // 编译 .wxss
         })
     });
 }

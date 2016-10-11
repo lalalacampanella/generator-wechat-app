@@ -1,5 +1,4 @@
 var gulp          = require('gulp');
-var chalk         = require('chalk');
 var gulpTaskList  = require('fs').readdirSync('./tasks/')
 var config        = require('./config');
 
@@ -15,5 +14,5 @@ var $ = require( 'gulp-load-plugins' )({
 var gulpTools = require('./gulpTools')(gulp, $, config);
 
 gulpTaskList.forEach(function(taskfile) {
-    require('./tasks/' + taskfile)(gulp, $, config, chalk, gulpTools);
+    require('./tasks/' + taskfile)(gulp, $, config, gulpTools);
 });

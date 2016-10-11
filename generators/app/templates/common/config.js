@@ -34,16 +34,12 @@ var webpackConfig = {
 
 var src  = {
     static: './src/**/*.{eot,svg,ttf,woff,png,jpg,jpeg,json}',
-    //fonts: './src/**/*.{eot,svg,ttf,woff}',
-    //images: './src/**/*.{png,jpg,jpeg}',
     js: './src/{pages/**/*.js,app.js}',
     watchJs: './src/**/*.js',
     sass: './src/**/*.{scss,sass}',
     less: './src/**/*.less',
     wxss: './src/**/*.{wxss,css}',
-    wxml: './src/**/*.wxml',
-    //json: './src/**/*.json',
-    views: './src/**/*.{html,wxml}'
+    wxml: './src/**/*.{html,wxml}'
 };
 
 var dist = './dist/';

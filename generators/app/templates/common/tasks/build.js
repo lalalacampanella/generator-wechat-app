@@ -1,10 +1,5 @@
-module.exports = function(gulp, $, config, chalk, gulpTools) {
+module.exports = function(gulp, $, config, gulpTools) {
     gulp.task('build', ['clean'], function () {
-        gulpTools.build(function () {
-            setTimeout(function () {
-                console.log();
-                console.log(chalk.green('	Build success!'));
-            }, 0)
-        });
+        gulpTools.build();
     });
 }

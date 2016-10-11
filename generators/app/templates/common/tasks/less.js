@@ -1,8 +1,7 @@
-module.exports = function(gulp, $, config, chalk, gulpTools) {
+module.exports = function(gulp, $, config, gulpTools) {
     gulp.task('less', function () {
         $.watch([config.src.less], function (e) {
-            var date = new Date();
-            console.log(chalk.green(`[${date.Format('hh:mm:ss')}] ${e.history} has changed, Build success!`));
+            gulpTools.log(e);
             var paths = $.watchPath(e, config.src.sass, config.dist);
             gulpTools.compileLess(paths.srcPath,paths.srcDir.replace('src','dist'))
         })

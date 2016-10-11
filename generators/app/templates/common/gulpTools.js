@@ -2,29 +2,26 @@ var named         = require('vinyl-named');
 var webpackStream = require('webpack-stream');
 var webpack       = require('webpack');
 var runSequence   = require('run-sequence');
+var chalk         = require('chalk');
 
 module.exports = function(gulp, $, config) {
 
-    function static() {
-        gulp.src(config.src.static)
-            .pipe(gulp.dest(config.dist));
+    function log(e) {
+        var date = new Date();
+        console.log(chalk.green(`[${date.Format('hh:mm:ss')}] ${e.history} has changed, Build success!`));
     }
-    function json() {
-        gulp.src(config.src.json)
-            .pipe(gulp.dest(config.dist))
+    function compileStatic(src, dist) {
+        gulp.src(src)
+            .pipe(gulp.dest(dist));
     }
-
-    function images() {
-        gulp.src(config.src.images)
-            .pipe(gulp.dest(config.dist));
-    }
-
-    function views() {
-        gulp.src(config.src.views)
-            .pipe($.rename({
-                extname: ".wxml"
+    function compileWxml(src, dist) {
+        gulp.src(src)
+            .pipe($.ifElse(/html/.test(src), function() {
+                return $.rename({
+                    extname: ".wxml"
+                });
             }))
-            .pipe(gulp.dest(config.dist));
+            .pipe(gulp.dest(dist));
     }
     function compileSass(src, dist) {
         return gulp.src(src)
@@ -63,7 +60,14 @@ module.exports = function(gulp, $, config) {
                 extensions: ['png', /\.jpg#datauri$/i],
                 maxImageSize: 10 * 1024 // bytes,
             }))
-            .pipe($.postcss(config.processes))
+            .pipe($.ifElse(config.isBuild === true, function () {
+                return $.postcss(config.processes);
+            }))
+            .pipe($.ifElse(/css/.test(src), function() {
+                return $.rename({
+                    extname: ".wxss"
+                });
+            }))
             .pipe(gulp.dest(dist))
     }
 
@@ -82,26 +86,22 @@ module.exports = function(gulp, $, config) {
             .pipe($.ifElse(config.isBuild === true, $.ugjs))
             .pipe(gulp.dest(config.dist))
     }
-    function build(ises5, cb) {
-        runSequence(['js:build','less:build', 'sass:build', 'wxss:build'], function () {
-            views();
-            static();
-            //images();
-            //fonts();
-            //json();
-            cb && cb()
+    function build() {
+        runSequence(['js:build','less:build', 'sass:build', 'wxss:build', 'wxml:build', 'static:build'], function () {
+            setTimeout(function () {
+                console.log();
+                console.log(chalk.green('Build success!'));
+            }, 0)
         });
     }
     return {
-        //fonts:fonts,
-        //json:json,
-        views:views,
-        //images:images,
-        static:static,
-        compileSass:compileSass,
-        compileLess:compileLess,
-        compileWxss:compileWxss,
+        compileStatic: compileStatic,
+        compileSass: compileSass,
+        compileLess: compileLess,
+        compileWxss: compileWxss,
         compileJs: compileJs,
-        build:build
+        compileWxml: compileWxml,
+        build:build,
+        log:log
     }
 }
