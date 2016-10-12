@@ -1,5 +1,5 @@
 # generator-wechat-app [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
-> a small wechat app cli for less(sass,css), es6
+> 微信小程序脚手架程序，支持 less(sass,css), es6+
 
 ## Installation
 

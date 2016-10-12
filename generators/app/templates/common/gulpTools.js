@@ -8,7 +8,7 @@ module.exports = function(gulp, $, config) {
 
     function log(e) {
         var date = new Date();
-        console.log(chalk.green(`[${date.Format('hh:mm:ss')}] ${e.history} has changed, Build success!`));
+        console.log(chalk.white('[') + chalk.gray(date.Format('hh:mm:ss')) + chalk.white('] ') + chalk.green(e.history) + chalk.white(' has changed, Build success!'));
     }
     function compileStatic(src, dist) {
         gulp.src(src)
@@ -92,7 +92,12 @@ module.exports = function(gulp, $, config) {
         runSequence(['js:build','less:build', 'sass:build', 'wxss:build', 'wxml:build', 'static:build', 'json:build'], function () {
             setTimeout(function () {
                 console.log();
-                console.log(chalk.green('Build success!'));
+                if (config.isBuild) {
+                    console.log(chalk.green('Build success!'));
+                }
+                else {
+                    console.log(chalk.green('Build success! watching for files changes...'))
+                }
             }, 0)
         });
     }
